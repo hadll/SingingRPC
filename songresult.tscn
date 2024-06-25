@@ -14,14 +14,10 @@ expand_margin_right = 20.0
 expand_margin_bottom = 20.0
 
 [node name="songresult" type="MarginContainer"]
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -44.0
-offset_bottom = 44.0
+offset_bottom = 88.0
 grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("1_8f3tj")
 
 [node name="Panel" type="Panel" parent="."]
