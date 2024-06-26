@@ -38,8 +38,15 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 	var response = JSON.parse_string(body.get_string_from_utf8())
 	%Searching_anim.visible = false
 	for song in response:
+		if "syncedLyrics" not in song:
+			continue
 		var new_song = result_scene.instantiate()
 		new_song.song = song["name"]
 		new_song.album = song["albumName"]
 		new_song.artist = song["artistName"]
+		new_song.lyrics = song["syncedLyrics"]
 		%ResultContainer.add_child(new_song)
+
+
+func _on_clear_pressed():
+	%Search_bar.text = ""
