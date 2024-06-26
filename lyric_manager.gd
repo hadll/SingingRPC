@@ -5,8 +5,10 @@ var lyric:String
 var stage = 0
 
 func _ready():
-	$AnimationPlayer.play("text_prepare")
 	text = lyric
+
+func play_prepare():
+	$AnimationPlayer.play("text_prepare")
 
 func play_active():
 	$AnimationPlayer.play("text_current")
@@ -23,9 +25,11 @@ func _on_animation_player_animation_finished(anim_name):
 
 func play_next():
 	if stage == 0:
+		play_prepare()
+	elif stage == 1:
 		play_active()
-	if stage == 1:
+	elif stage == 2:
 		play_out()
-	if stage == 2:
+	elif stage == 3:
 		play_remove()
 	stage += 1

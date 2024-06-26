@@ -21,8 +21,7 @@ func _on_timer_timeout():
 		$Timer.start(time_to_add-time)
 		time += time_to_add
 		
-		if line -1 >= 0:
-			create_line(lyrics.values()[line-1])
+		create_line(lyrics.values()[line])
 	for item in %Lyric_bar.get_children():
 		if item is Lyric:
 			item.play_next()
