@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://djlfk7gq832qy"]
+[gd_scene load_steps=4 format=3 uid="uid://djlfk7gq832qy"]
 
 [ext_resource type="Script" path="res://songresult.gd" id="1_8f3tj"]
+[ext_resource type="Texture2D" uid="uid://c6vgod65cpr0e" path="res://Art Assets/note.svg" id="2_xjwk6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5hga"]
 bg_color = Color(0.141176, 0.141176, 0.141176, 1)
@@ -47,3 +48,11 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Yonkagor"
+
+[node name="Button" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(90, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("2_xjwk6")
+ignore_texture_size = true
+stretch_mode = 4
