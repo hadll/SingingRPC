@@ -6,8 +6,8 @@ var result_scene = preload("res://songresult.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	DiscordRPC.app_id = 1255164075353309304 # Application ID
-	DiscordRPC.details = "A demo activity by vaporvee"
-	DiscordRPC.state = "Checkpoint 23/23"
+	DiscordRPC.details = "Making a cool thing in godot"
+	DiscordRPC.state = "probably left it open by accident"
 	DiscordRPC.large_image = "example_game" # Image key from "Art Assets"
 	DiscordRPC.large_image_text = "Try it now!"
 	DiscordRPC.small_image = "boss" # Image key from "Art Assets"
@@ -26,15 +26,17 @@ func _process(delta):
 
 
 func _on_search_button_pressed():
-	var error = %HTTPRequest.request("https://lrclib.net/api/search?q=yonkagor")
+	var error = %HTTPRequest.request("https://lrclib.net/api/search?q="+%Search_bar.text)
 	if error != OK:
 		push_error("bad things")
+	else:
+		%Searching_anim.visible = true
 	
 
 
 func _on_http_request_request_completed(result, response_code, headers, body):
 	var response = JSON.parse_string(body.get_string_from_utf8())
-	print(response)
+	%Searching_anim.visible = false
 	for song in response:
 		var new_song = result_scene.instantiate()
 		new_song.song = song["name"]
