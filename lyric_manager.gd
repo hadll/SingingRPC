@@ -27,6 +27,8 @@ func play_next():
 	if stage == 0:
 		play_prepare()
 	elif stage == 1:
+		DiscordRPC.state = lyric
+		DiscordRPC.refresh()
 		play_active()
 	elif stage == 2:
 		play_out()

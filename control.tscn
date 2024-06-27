@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cdmgv06ar6c8q"]
+[gd_scene load_steps=16 format=3 uid="uid://cdmgv06ar6c8q"]
 
 [ext_resource type="Script" path="res://Control.gd" id="1_o00et"]
 [ext_resource type="Texture2D" uid="uid://bgwk40x1s1scn" path="res://Art Assets/search.svg" id="2_hcdih"]
@@ -90,6 +90,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 540)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Active_song/../HBoxContainer:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1152, 648)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Lyric_bar/../../..:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 756)]
+}
 
 [sub_resource type="Animation" id="Animation_ss21n"]
 resource_name = "slide_in"
@@ -103,13 +127,41 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.25, 1),
 "update": 0,
-"values": [Vector2(0, 648), Vector2(0, 540)]
+"values": [Vector2(0, 756), Vector2(0, 648)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Active_song/../HBoxContainer:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(1152, 648), Vector2(1152, 540)]
+}
+
+[sub_resource type="Animation" id="Animation_i3pfq"]
+resource_name = "slide_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Lyric_bar/../../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 756)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7u0qd"]
 _data = {
 "RESET": SubResource("Animation_h23tw"),
-"slide_in": SubResource("Animation_ss21n")
+"slide_in": SubResource("Animation_ss21n"),
+"slide_out": SubResource("Animation_i3pfq")
 }
 
 [node name="Control" type="Control"]
@@ -209,21 +261,25 @@ libraries = {
 [node name="Active_song" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 12
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -108.0
-offset_right = 1152.0
+offset_top = 108.0
+offset_bottom = 108.0
+grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("6_um8kf")
 
 [node name="Panel" type="Panel" parent="Active_song"]
+custom_minimum_size = Vector2(0, 108)
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="Active_song"]
 layout_mode = 1
@@ -295,6 +351,11 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="Active_song"]
+
+[node name="Label" type="Label" parent="Active_song"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
 [connection signal="pressed" from="HBoxContainer/CenterContainer/VBoxContainer/Clear" to="." method="_on_clear_pressed"]

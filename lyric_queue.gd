@@ -2,7 +2,7 @@ extends Control
 
 var lyric = preload("res://lyric.tscn")
 
-var lyrics = {"0:1.00":"Wawa", "0:3.0":"wewo", "0:4.0":"testing"}
+var lyrics = {}
 var line = -1
 var time = 0
 
@@ -16,10 +16,11 @@ func _ready():
 
 func _on_timer_timeout():
 	line += 1
+	print(time)
 	if line < lyrics.size():
 		var time_to_add = string_to_seconds(lyrics.keys()[line])
 		$Timer.start(time_to_add-time)
-		time += time_to_add
+		time += time_to_add-time
 		
 		create_line(lyrics.values()[line])
 	for item in %Lyric_bar.get_children():
@@ -40,3 +41,11 @@ func restart_song():
 	time = 0
 	$Timer.stop()
 	_on_timer_timeout()
+	DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system())
+	DiscordRPC.end_timestamp = Time.get_unix_time_from_system()+string_to_seconds(lyrics.keys()[lyrics.size()-1])
+	DiscordRPC.refresh()
+	%active_bar_anim.play("slide_in")
+
+func _process(delta):
+	$Label.text = str($Timer.time_left)
+	
