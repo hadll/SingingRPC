@@ -47,6 +47,21 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 		new_song.lyrics = song["syncedLyrics"]
 		%ResultContainer.add_child(new_song)
 
+func song_button_pressed(song):
+	%Active_song.lyrics = process_lyric_string(song.lyrics)
+	%Active_song.restart_song()
 
 func _on_clear_pressed():
 	%Search_bar.text = ""
+
+func process_lyric_string(lyrics:String) -> Dictionary:
+	var result_dict = {}
+	var lines = lyrics.split('\n', false)
+	for line in lines:
+		if line.strip_edges() == "":
+			continue
+		var key = line.get_slice(']', 0).substr(1)  # Get the key between brackets
+		var value = line.get_slice(']', 1)  # Get the value after the key
+		result_dict[key] = value.strip_edges()  # Strip any leading or trailing spaces  
+	return result_dict
+	

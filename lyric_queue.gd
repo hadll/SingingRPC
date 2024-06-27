@@ -35,3 +35,8 @@ func string_to_seconds(time_string: String) -> float:
 	var total_seconds = minutes * 60 + seconds + milliseconds / 1000.0
 	return total_seconds
 
+func restart_song():
+	line = -1
+	time = 0
+	$Timer.stop()
+	_on_timer_timeout()
