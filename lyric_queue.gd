@@ -41,6 +41,9 @@ func restart_song():
 	time = 0
 	$Timer.stop()
 	_on_timer_timeout()
+	for item in %Lyric_bar.get_children():
+		if item is Lyric:
+			item.queue_free()
 	DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system())
 	DiscordRPC.end_timestamp = Time.get_unix_time_from_system()+string_to_seconds(lyrics.keys()[lyrics.size()-1])
 	DiscordRPC.refresh()
@@ -49,3 +52,19 @@ func restart_song():
 func _process(delta):
 	$Label.text = str($Timer.time_left)
 	
+
+
+func _on_close_button_pressed():
+	$Timer.stop()
+	for item in %Lyric_bar.get_children():
+		if item is Lyric:
+			item.queue_free()
+	DiscordRPC.details = "Picking a song"
+	DiscordRPC.end_timestamp = -1
+	DiscordRPC.start_timestamp = Time.get_unix_time_from_system()
+	DiscordRPC.refresh()
+	%active_bar_anim.play("slide_out")
+
+
+func _on_pause_button_pressed():
+	pass # Replace with function body.

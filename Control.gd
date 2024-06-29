@@ -6,7 +6,7 @@ var result_scene = preload("res://songresult.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	DiscordRPC.app_id = 1255164075353309304 # Application ID
-	DiscordRPC.details = "Making a cool thing in godot"
+	DiscordRPC.details = "Picking a song"
 #	DiscordRPC.state = "probably left it open by accident"
 #	DiscordRPC.large_image = "example_game" # Image key from "Art Assets"
 #	DiscordRPC.large_image_text = "Try it now!"
