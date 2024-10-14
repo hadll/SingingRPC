@@ -24,7 +24,7 @@ func _process(delta):
 
 
 func _on_search_button_pressed():
-	var error = %HTTPRequest.request("https://lrclib.net/api/search?q="+%Search_bar.text)
+	var error = %HTTPRequest.request("https://lrclib.net/api/search?q="+%Search_bar.text.replace(" ", "+"))
 	if error != OK:
 		push_error("bad things")
 	else:
