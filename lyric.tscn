@@ -153,7 +153,9 @@ _data = {
 [node name="Lyric" type="Label"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 33.0
+offset_top = 64.0
+offset_right = 1152.0
+offset_bottom = 97.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
